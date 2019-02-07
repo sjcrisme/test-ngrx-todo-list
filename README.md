@@ -1,4 +1,20 @@
 # TestTodoList
+Create “To do list” by using NGXS state management module.
+The “To do list” should have the possibility to write the task list. User can have
+the possibilities listed below:
+
+-Mark them as done with a checkbox so that the line could be on the written task
+-User should be able to select the task and delete it from the entire list
+-Another option is to select the task and archive it from the list
+
+The module should also include the following tabs:
+
+-Pending
+-Completed
+-Archived
+
+By clicking on each tab user should be able to see the matching task list of tabs
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
