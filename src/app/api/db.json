@@ -1,0 +1,19 @@
+{
+  "todo": [
+    {
+      "id": 1,
+      "status": "Archived",
+      "message": "reinstall webstorm to new version"
+    },
+    {
+      "id": 2,
+      "status": "Pending",
+      "message": "create todo list app"
+    },
+    {
+      "id": 3,
+      "status": "Pending",
+      "message": "clear the code"
+    }
+  ]
+}
