@@ -1,5 +1,14 @@
 <div>
   <ul>
-    <li *ngFor="let item of todo">{{item.id}} |  {{status[item.status]}} | {{item.message}}</li>
+    <li *ngFor="let item of todo">
+      <div>
+        <label>{{item.id}}</label>
+        <input type="checkbox" id="scales" name="scales" (change)="onChangeStatus(item.id,$event)">
+      </div>
+
+      <div [class]="status[item.status]">
+        {{item.message}}
+      </div>
+    </li>
   </ul>
 </div>

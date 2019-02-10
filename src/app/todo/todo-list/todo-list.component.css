@@ -1,0 +1,22 @@
+ul li {
+  list-style-type:none;
+  display: flex;
+  flex-direction: row;
+}
+li {
+  position: relative;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+}
+.message{
+  word-break: break-all;
+  padding: 15px 15px 15px 60px;
+  display: block;
+  line-height: 1.2;
+  transition: color 0.4s;
+}
+
+.Pending {}
+.Completed {
+  text-decoration:line-through;
+}

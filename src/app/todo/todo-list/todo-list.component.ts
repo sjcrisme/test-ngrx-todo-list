@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StatusTodo, Todo } from '../../core/todo';
 
 @Component({
@@ -9,10 +9,15 @@ import { StatusTodo, Todo } from '../../core/todo';
 })
 export class TodoListComponent implements OnInit {
   @Input() todo: Todo[];
+  @Output() checked = new EventEmitter();
   status = StatusTodo;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onChangeStatus(id, event) {
+    console.log("id", id, event.target.checked);
+  }
 }

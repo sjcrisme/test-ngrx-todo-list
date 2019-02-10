@@ -18,16 +18,26 @@ export class TodoEffects {
     )
   );
 
-  /// TODO: why it's not see TodoActions.TodoAdd
   @Effect() todo_add$ = this.actions$.pipe(
     ofType(TodoActions.TODO_ADD),
-    switchMap(action =>
-     this.http.post('http://localhost:3000/todo', action['payload'])
+    switchMap((action: TodoActions.TodoAdd) =>
+     this.http.post('http://localhost:3000/todo', action.payload)
        .pipe(
-          map((res: Todo) => new TodoActions.TodoAddSuccess(res)),
+          map((res: Todo) => new TodoActions.TodoAddSuccess()),
           catchError((err) => of(new TodoActions.TodoAddFail(err.message)))
         )
      )
+  );
+
+  @Effect() todo_cheked$ = this.actions$.pipe(
+    ofType(TodoActions.TODO_CHECKED),
+    switchMap((action: TodoActions.TodoChecked) =>
+      this.http.put(`http://localhost:3000/todo/${action.payload}`, {})
+        .pipe(
+          map((res: Todo) => new TodoActions.TodoAddSuccess()),
+          catchError((err) => of(new TodoActions.TodoAddFail(err.message)))
+        )
+    )
   );
 
   constructor(private actions$: Actions, private http: HttpClient) {

@@ -30,6 +30,17 @@ export class TodoPageComponent implements OnInit {
     this.store.dispatch(new TodoAdd({id: id, message: message, status: StatusTodo.Pending}));
   }
 
+  showAll() {
+    console.log('All');
+  }
+
+  Completed() {
+    console.log('Completed');
+  }
+
+  Archived() {
+    console.log('Archived');
+  }
   // test() {
   //   this.http.post('http://localhost:3000/todo',{ id: 4, message: 'test test test', status: StatusTodo.Pending})
   //     .subscribe(x => console.log('x:', x));

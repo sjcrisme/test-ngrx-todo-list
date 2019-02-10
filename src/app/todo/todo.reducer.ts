@@ -1,6 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { Todo } from './../core/todo';
 import * as TodoActions from '../store/actions/todo.actions';
+import { StatusTodo } from '../core/todo';
 
 export interface State {
   loading: boolean;
@@ -34,6 +35,13 @@ export const reducer = (state: State = initialState, action: TodoActions.All) =>
     }
     case TodoActions.TODO_ADD_FAIL: {
       return {...state, results: action.payload};
+    }
+///
+    case TodoActions.TODO_CHECKED: {
+      const selected = action.payload;
+      const newResult = state.results;
+      newResult[selected].status = StatusTodo.Completed;
+      return {...state, results: newResult};
     }
     default: {
       return state;
