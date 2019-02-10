@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { EffectsModule } from '@ngrx/effects';
@@ -20,6 +21,7 @@ import { routes } from './app.route.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     // IMPORT NGRX MODULES
     StoreModule.forRoot(reducers, {metaReducers}),

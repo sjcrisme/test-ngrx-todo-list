@@ -1,5 +1,5 @@
 <div>
   <ul>
-    <li *ngFor="let item of todo">{{item.id}} {{item.status}} {{item.message}}</li>
+    <li *ngFor="let item of todo">{{item.id}} |  {{status[item.status]}} | {{item.message}}</li>
   </ul>
 </div>

@@ -2,18 +2,23 @@
   "todo": [
     {
       "id": 1,
-      "status": "Archived",
+      "status": 1,
       "message": "reinstall webstorm to new version"
     },
     {
       "id": 2,
-      "status": "Pending",
+      "status": 0,
       "message": "create todo list app"
     },
     {
       "id": 3,
-      "status": "Pending",
+      "status": 0,
       "message": "clear the code"
+    },
+    {
+      "id": 4,
+      "message": "ddd",
+      "status": 0
     }
   ]
 }

@@ -4,3 +4,4 @@ import { State } from './todo.reducer';
 export const getState = createFeatureSelector<State>('todo');
 
 export const getAllTodos = createSelector(getState, state => state.results);
+export const getLastId = createSelector(getState, state => state.results.length);

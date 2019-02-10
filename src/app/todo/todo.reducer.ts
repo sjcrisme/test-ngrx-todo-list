@@ -25,6 +25,16 @@ export const reducer = (state: State = initialState, action: TodoActions.All) =>
     case TodoActions.TODO_LOAD_FAIL: {
       return {...state, loading: false, results: action.payload};
     }
+    ///
+    case TodoActions.TODO_ADD: {
+      return {...state, results: [...state.results, action.payload]};
+    }
+    case TodoActions.TODO_ADD_SUCCESS: {
+      return {...state};
+    }
+    case TodoActions.TODO_ADD_FAIL: {
+      return {...state, results: action.payload};
+    }
     default: {
       return state;
     }

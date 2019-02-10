@@ -24,11 +24,11 @@ export class TodoLoadFail implements Action {
 
 export class TodoAdd implements Action {
   readonly type = TODO_ADD;
-  constructor() {}
+  constructor(public payload: Todo) {}
 }
 export class TodoAddSuccess implements Action {
   readonly type = TODO_ADD_SUCCESS;
-  constructor(public payload: Todo) {}
+  constructor() {}
 }
 export class TodoAddFail implements Action {
   readonly type = TODO_ADD_FAIL;
