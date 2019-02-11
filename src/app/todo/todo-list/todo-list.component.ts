@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StatusTodo, Todo } from '../../core/todo';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
   @Input() todo: Todo[];
@@ -14,10 +13,9 @@ export class TodoListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  onChangeStatus(id, event) {
-    console.log("id", id, event.target.checked);
+  onChangeStatus(item: Todo, event) {
+    this.checked.emit({id: item.id, status: event.target.checked, message: item.message});
   }
 }

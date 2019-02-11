@@ -3,7 +3,7 @@
     <li *ngFor="let item of todo">
       <div>
         <label>{{item.id}}</label>
-        <input type="checkbox" id="scales" name="scales" (change)="onChangeStatus(item.id,$event)">
+        <input type="checkbox" id="scales" name="scales" (change)="onChangeStatus(item,$event)" [checked]="item.status == 1">
       </div>
 
       <div [class]="status[item.status]">

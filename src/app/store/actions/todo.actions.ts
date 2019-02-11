@@ -39,7 +39,7 @@ export class TodoAddFail implements Action {
 
 export class TodoChecked implements Action {
   readonly type = TODO_CHECKED;
-  constructor(public payload: string) {}
+  constructor(public payload: Todo) {}
 }
 
  export type All =

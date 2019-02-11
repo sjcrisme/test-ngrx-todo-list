@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/reducers';
-import { TodoAdd, TodoLoad } from '../../store/actions/todo.actions';
+import { TodoAdd, TodoChecked, TodoLoad } from '../../store/actions/todo.actions';
 import { getAllTodos, getLastId } from '../todo.selectors';
-import { StatusTodo } from '../../core/todo';
+import { StatusTodo, Todo } from '../../core/todo';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -41,8 +41,15 @@ export class TodoPageComponent implements OnInit {
   Archived() {
     console.log('Archived');
   }
-  // test() {
-  //   this.http.post('http://localhost:3000/todo',{ id: 4, message: 'test test test', status: StatusTodo.Pending})
-  //     .subscribe(x => console.log('x:', x));
-  // }
+
+  getCheked(item: Todo) {
+    console.log('III', item);
+    this.store.dispatch(new TodoChecked({id: item.id, status: item.status, message: item.message}));
+  }
+  test() {
+    // this.http.post('http://localhost:3000/todo',{ id: 4, message: 'test test test', status: StatusTodo.Pending})
+    //   .subscribe(x => console.log('x:', x));
+     this.http.put(`http://localhost:3000/todo/3`, {id: 3, message: 'clear the code', status: StatusTodo.Completed})
+       .subscribe(x => console.log('x:', x));
+  }
 }

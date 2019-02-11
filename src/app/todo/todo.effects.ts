@@ -32,7 +32,7 @@ export class TodoEffects {
   @Effect() todo_cheked$ = this.actions$.pipe(
     ofType(TodoActions.TODO_CHECKED),
     switchMap((action: TodoActions.TodoChecked) =>
-      this.http.put(`http://localhost:3000/todo/${action.payload}`, {})
+      this.http.put(`http://localhost:3000/todo/${action.payload.id}`, action.payload)
         .pipe(
           map((res: Todo) => new TodoActions.TodoAddSuccess()),
           catchError((err) => of(new TodoActions.TodoAddFail(err.message)))

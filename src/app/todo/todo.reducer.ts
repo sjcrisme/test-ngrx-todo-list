@@ -38,9 +38,14 @@ export const reducer = (state: State = initialState, action: TodoActions.All) =>
     }
 ///
     case TodoActions.TODO_CHECKED: {
-      const selected = action.payload;
-      const newResult = state.results;
-      newResult[selected].status = StatusTodo.Completed;
+      const selected = action.payload.id;
+      const newResult = state.results.map(i => {
+        if (i.id == selected) {
+          i.status = StatusTodo.Completed;
+        }
+        return i;
+      });
+      // newResult[selected].status = StatusTodo.Completed;
       return {...state, results: newResult};
     }
     default: {
