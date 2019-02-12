@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/reducers';
 import { TodoAdd, TodoChecked, TodoDelete, TodoLoad } from '../../store/actions/todo.actions';
-import { getAllTodos, getLastId } from '../todo.selectors';
+import { getAllTodos, getComplited, getLastId } from '../todo.selectors';
 import { Estatus, StatusTodo, Todo } from '../../core/todo';
 
 import { HttpClient } from '@angular/common/http';
@@ -38,11 +38,11 @@ export class TodoPageComponent implements OnInit {
   }
 
   showAll() {
-    console.log('All');
+    this.todos$ = this.store.pipe(select(getAllTodos));
   }
 
   Completed() {
-    console.log('Completed');
+    this.todos$ = this.store.pipe(select(getComplited));
   }
 
   Archived() {
