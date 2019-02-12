@@ -9,6 +9,7 @@
       <div [class]="status[item.status]">
         {{item.message}}
       </div>
+      <button (click)="onDelete(item)"> X </button>
     </li>
   </ul>
 </div>

@@ -6,10 +6,11 @@ export const TODO_LOAD_SUCCESS = '[Todo] LOAD SUCCESS';
 export const TODO_LOAD_FAIL    = '[Todo] LOAD FAIL';
 
 export const TODO_ADD          = '[Todo] ADD ';
-export const TODO_ADD_SUCCESS  = '[Todo] ADD SUCCESS';
+export const TODO_SUCCESS      = '[Todo] SUCCESS';
 export const TODO_ADD_FAIL     = '[Todo] ADD FAIL';
 
 export const TODO_CHECKED      = '[Todo] CKEKED';
+export const TODO_DELETE       = '[Todo] DELETE';
 
 export class TodoLoad implements Action {
   readonly type = TODO_LOAD;
@@ -28,8 +29,8 @@ export class TodoAdd implements Action {
   readonly type = TODO_ADD;
   constructor(public payload: Todo) {}
 }
-export class TodoAddSuccess implements Action {
-  readonly type = TODO_ADD_SUCCESS;
+export class TodoSuccess implements Action {
+  readonly type = TODO_SUCCESS;
   constructor() {}
 }
 export class TodoAddFail implements Action {
@@ -42,12 +43,18 @@ export class TodoChecked implements Action {
   constructor(public payload: Todo) {}
 }
 
+export class TodoDelete implements Action {
+  readonly type = TODO_DELETE;
+  constructor(public payload: number) {}
+}
+
  export type All =
   | TodoLoad
   | TodoLoadSuccess
   | TodoLoadFail
   | TodoAdd
-  | TodoAddSuccess
+  | TodoSuccess
   | TodoAddFail
   | TodoChecked
+  | TodoDelete
    ;

@@ -9,3 +9,8 @@ export enum StatusTodo {
   Completed,
   Archived
 }
+
+export enum Estatus {
+  DELETE,
+  CHECK
+}

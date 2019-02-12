@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/reducers';
-import { TodoAdd, TodoChecked, TodoLoad } from '../../store/actions/todo.actions';
+import { TodoAdd, TodoChecked, TodoDelete, TodoLoad } from '../../store/actions/todo.actions';
 import { getAllTodos, getLastId } from '../todo.selectors';
-import { StatusTodo, Todo } from '../../core/todo';
+import { Estatus, StatusTodo, Todo } from '../../core/todo';
 
 import { HttpClient } from '@angular/common/http';
+
+interface ITodoEvent {
+  id: number;
+  message: string;
+  ev: Estatus;
+  status?: StatusTodo;
+}
 
 @Component({
   selector: 'app-todo-page',
@@ -42,9 +49,18 @@ export class TodoPageComponent implements OnInit {
     console.log('Archived');
   }
 
-  getCheked(item: Todo) {
-    console.log('III', item);
-    this.store.dispatch(new TodoChecked({id: item.id, status: item.status, message: item.message}));
+  getCheked(item: ITodoEvent) {
+    const acction: Estatus = item.ev;
+    let it = 0;
+    if (item.status) it = 1;
+
+    if (!acction) {
+      console.log('delete');
+      this.store.dispatch(new TodoDelete(item.id));
+    } else {
+      console.log('checked');
+      this.store.dispatch(new TodoChecked({id: item.id, status: it, message: item.message}));
+    }
   }
   test() {
     // this.http.post('http://localhost:3000/todo',{ id: 4, message: 'test test test', status: StatusTodo.Pending})

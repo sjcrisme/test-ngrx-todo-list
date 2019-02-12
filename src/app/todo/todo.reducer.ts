@@ -30,7 +30,7 @@ export const reducer = (state: State = initialState, action: TodoActions.All) =>
     case TodoActions.TODO_ADD: {
       return {...state, results: [...state.results, action.payload]};
     }
-    case TodoActions.TODO_ADD_SUCCESS: {
+    case TodoActions.TODO_SUCCESS: {
       return {...state};
     }
     case TodoActions.TODO_ADD_FAIL: {
@@ -47,6 +47,9 @@ export const reducer = (state: State = initialState, action: TodoActions.All) =>
       });
       // newResult[selected].status = StatusTodo.Completed;
       return {...state, results: newResult};
+    }
+    case TodoActions.TODO_DELETE: {
+      return {...state, results: [...state.results.filter((x) => x.id !== action.payload)]};
     }
     default: {
       return state;

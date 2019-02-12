@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { StatusTodo, Todo } from '../../core/todo';
+import { Estatus, StatusTodo, Todo } from '../../core/todo';
+
 
 @Component({
   selector: 'app-todo-list',
@@ -16,6 +17,10 @@ export class TodoListComponent implements OnInit {
   ngOnInit() { }
 
   onChangeStatus(item: Todo, event) {
-    this.checked.emit({id: item.id, status: event.target.checked, message: item.message});
+    this.checked.emit({id: item.id, status: event.target.checked, message: item.message, ev: Estatus.CHECK});
+  }
+
+  onDelete(item: Todo, event) {
+    this.checked.emit({id: item.id, message: item.message, ev: Estatus.DELETE});
   }
 }

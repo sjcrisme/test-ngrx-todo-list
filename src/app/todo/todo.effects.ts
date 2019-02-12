@@ -23,7 +23,7 @@ export class TodoEffects {
     switchMap((action: TodoActions.TodoAdd) =>
      this.http.post('http://localhost:3000/todo', action.payload)
        .pipe(
-          map((res: Todo) => new TodoActions.TodoAddSuccess()),
+          map((res: Todo) => new TodoActions.TodoSuccess()),
           catchError((err) => of(new TodoActions.TodoAddFail(err.message)))
         )
      )
@@ -34,7 +34,18 @@ export class TodoEffects {
     switchMap((action: TodoActions.TodoChecked) =>
       this.http.put(`http://localhost:3000/todo/${action.payload.id}`, action.payload)
         .pipe(
-          map((res: Todo) => new TodoActions.TodoAddSuccess()),
+          map((res: Todo) => new TodoActions.TodoSuccess()),
+          catchError((err) => of(new TodoActions.TodoAddFail(err.message)))
+        )
+    )
+  );
+
+  @Effect() todo_delete$ = this.actions$.pipe(
+    ofType(TodoActions.TODO_DELETE),
+    switchMap((action: TodoActions.TodoDelete) =>
+      this.http.delete(`http://localhost:3000/todo/${action.payload}`)
+        .pipe(
+          map((res: Todo) => new TodoActions.TodoSuccess()),
           catchError((err) => of(new TodoActions.TodoAddFail(err.message)))
         )
     )
