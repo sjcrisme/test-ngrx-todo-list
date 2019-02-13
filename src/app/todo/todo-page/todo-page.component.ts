@@ -6,6 +6,7 @@ import { getAllTodos, getComplited, getLastId } from '../todo.selectors';
 import { Estatus, StatusTodo, Todo } from '../../core/todo';
 
 import { HttpClient } from '@angular/common/http';
+import { FilterActions, FilterAll, FilterCompleted } from "../../store/actions/filter.actions";
 
 interface ITodoEvent {
   id: number;
@@ -38,11 +39,13 @@ export class TodoPageComponent implements OnInit {
   }
 
   showAll() {
-    this.todos$ = this.store.pipe(select(getAllTodos));
+    this.store.dispatch(new FilterActions(StatusTodo.All));
+    // this.todos$ = this.store.pipe(select(getAllTodos));
   }
 
   Completed() {
-    this.todos$ = this.store.pipe(select(getComplited));
+    this.store.dispatch(new FilterActions(StatusTodo.Completed));
+    // this.todos$ = this.store.pipe(select(getComplited));
   }
 
   Archived() {

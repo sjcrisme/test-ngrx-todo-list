@@ -2,20 +2,21 @@ import { InjectionToken } from '@angular/core';
 import { Todo } from './../core/todo';
 import * as TodoActions from '../store/actions/todo.actions';
 import { StatusTodo } from '../core/todo';
+import * as FilterActions from '../store/actions/filter.actions';
 
 export interface State {
+  query: number;
   loading: boolean;
-  query: string;
   results: Todo[];
 }
 
 export const initialState: State = {
-  query: '',
+  query: StatusTodo.All,
   loading: false,
   results: [],
 };
 
-export const reducer = (state: State = initialState, action: TodoActions.All) => {
+export const reducer = (state: State = initialState, action: TodoActions.All | FilterActions.All) => {
   switch (action.type) {
     case TodoActions.TODO_LOAD: {
       return {...state, loading: true};
@@ -50,6 +51,9 @@ export const reducer = (state: State = initialState, action: TodoActions.All) =>
     }
     case TodoActions.TODO_DELETE: {
       return {...state, results: [...state.results.filter((x) => x.id !== action.payload)]};
+    }
+    case FilterActions.FILTER_ACTIONS: {
+      return {...state, query: action.payload};
     }
     default: {
       return state;

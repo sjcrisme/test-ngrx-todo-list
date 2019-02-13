@@ -7,7 +7,8 @@ export interface Todo {
 export enum StatusTodo {
   Pending,
   Completed,
-  Archived
+  Archived,
+  All
 }
 
 export enum Estatus {
