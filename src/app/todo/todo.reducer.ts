@@ -46,7 +46,16 @@ export const reducer = (state: State = initialState, action: TodoActions.All | F
         }
         return i;
       });
-      // newResult[selected].status = StatusTodo.Completed;
+      return {...state, results: newResult};
+    }
+    case TodoActions.TODO_ARCHIVE: {
+      const selected = action.payload.id;
+      const newResult = state.results.map(i => {
+        if (i.id == selected) {
+          i.status = StatusTodo.Archived;
+        }
+        return i;
+      });
       return {...state, results: newResult};
     }
     case TodoActions.TODO_DELETE: {

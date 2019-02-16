@@ -2,14 +2,15 @@
   <ul>
     <li *ngFor="let item of todo">
       <div>
-        <label>{{item.id}}</label>
+        <!--<label>{{item.id}}</label>-->
         <input type="checkbox" id="scales" name="scales" (change)="onChangeStatus(item,$event)" [checked]="item.status == 1">
       </div>
 
-      <div [class]="status[item.status]">
+      <div [class]="status[item.status]" style="width: 80%;">
         {{item.message}}
       </div>
       <button (click)="onDelete(item)"> X </button>
+      <button (click)="toArchive(item)"> A </button>
     </li>
   </ul>
 </div>

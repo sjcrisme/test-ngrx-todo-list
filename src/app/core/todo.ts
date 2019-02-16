@@ -13,5 +13,6 @@ export enum StatusTodo {
 
 export enum Estatus {
   DELETE,
-  CHECK
+  CHECK,
+  TOARCHIVE
 }

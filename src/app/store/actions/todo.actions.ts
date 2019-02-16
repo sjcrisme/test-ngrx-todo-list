@@ -10,6 +10,7 @@ export const TODO_SUCCESS      = '[Todo] SUCCESS';
 export const TODO_ADD_FAIL     = '[Todo] ADD FAIL';
 
 export const TODO_CHECKED      = '[Todo] CKEKED';
+export const TODO_ARCHIVE      = '[Todo] ARCHIVE';
 export const TODO_DELETE       = '[Todo] DELETE';
 
 export class TodoLoad implements Action {
@@ -42,6 +43,11 @@ export class TodoChecked implements Action {
   readonly type = TODO_CHECKED;
   constructor(public payload: Todo) {}
 }
+export class TodoArchive implements Action {
+  readonly type = TODO_ARCHIVE;
+  constructor(public payload: Todo) {}
+}
+
 
 export class TodoDelete implements Action {
   readonly type = TODO_DELETE;
@@ -56,5 +62,6 @@ export class TodoDelete implements Action {
   | TodoSuccess
   | TodoAddFail
   | TodoChecked
+  | TodoArchive
   | TodoDelete
    ;

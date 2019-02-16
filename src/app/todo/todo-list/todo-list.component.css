@@ -2,6 +2,8 @@ ul li {
   list-style-type:none;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
 }
 li {
   position: relative;
@@ -19,4 +21,8 @@ li {
 .Pending {}
 .Completed {
   text-decoration:line-through;
+}
+
+button {
+  margin-right:20px;
 }

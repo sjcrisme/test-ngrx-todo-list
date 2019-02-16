@@ -40,6 +40,17 @@ export class TodoEffects {
     )
   );
 
+  @Effect() todo_toArchive$ = this.actions$.pipe(
+    ofType(TodoActions.TODO_ARCHIVE),
+    switchMap((action: TodoActions.TodoArchive) =>
+      this.http.put(`http://localhost:3000/todo/${action.payload.id}`, action.payload)
+        .pipe(
+          map((res: Todo) => new TodoActions.TodoSuccess()),
+          catchError((err) => of(new TodoActions.TodoAddFail(err.message)))
+        )
+    )
+  );
+
   @Effect() todo_delete$ = this.actions$.pipe(
     ofType(TodoActions.TODO_DELETE),
     switchMap((action: TodoActions.TodoDelete) =>

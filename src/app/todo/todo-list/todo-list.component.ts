@@ -23,4 +23,8 @@ export class TodoListComponent implements OnInit {
   onDelete(item: Todo, event) {
     this.checked.emit({id: item.id, message: item.message, ev: Estatus.DELETE});
   }
+
+  toArchive(item: Todo) {
+    this.checked.emit({id: item.id, message: item.message, ev: Estatus.TOARCHIVE});
+  }
 }

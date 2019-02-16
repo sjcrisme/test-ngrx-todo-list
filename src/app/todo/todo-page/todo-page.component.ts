@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../store/reducers';
-import { TodoAdd, TodoChecked, TodoDelete, TodoLoad } from '../../store/actions/todo.actions';
-import { getAllTodos, getComplited, getLastId } from '../todo.selectors';
+import { TodoAdd, TodoArchive, TodoChecked, TodoDelete, TodoLoad } from '../../store/actions/todo.actions';
+import { getAllByFilter, getLastId } from '../todo.selectors';
 import { Estatus, StatusTodo, Todo } from '../../core/todo';
 
 import { HttpClient } from '@angular/common/http';
-import { FilterActions, FilterAll, FilterCompleted } from "../../store/actions/filter.actions";
+import { FilterActions } from '../../store/actions/filter.actions';
 
 interface ITodoEvent {
   id: number;
@@ -22,7 +22,7 @@ interface ITodoEvent {
 })
 export class TodoPageComponent implements OnInit {
 
-  todos$ = this.store.pipe(select(getAllTodos));
+  todos$ = this.store.pipe(select(getAllByFilter));
   lastId$ = this.store.pipe(select(getLastId));
   message: any;
 
@@ -40,16 +40,15 @@ export class TodoPageComponent implements OnInit {
 
   showAll() {
     this.store.dispatch(new FilterActions(StatusTodo.All));
-    // this.todos$ = this.store.pipe(select(getAllTodos));
   }
 
   Completed() {
     this.store.dispatch(new FilterActions(StatusTodo.Completed));
-    // this.todos$ = this.store.pipe(select(getComplited));
   }
 
   Archived() {
-    console.log('Archived');
+    // console.log('Archived');
+    this.store.dispatch(new FilterActions(StatusTodo.Archived));
   }
 
   getCheked(item: ITodoEvent) {
@@ -60,7 +59,9 @@ export class TodoPageComponent implements OnInit {
     if (!acction) {
       console.log('delete');
       this.store.dispatch(new TodoDelete(item.id));
-    } else {
+    } else if (acction === Estatus.TOARCHIVE) {
+      this.store.dispatch(new TodoArchive({id: item.id, status: it, message: item.message}));
+    } else{
       console.log('checked');
       this.store.dispatch(new TodoChecked({id: item.id, status: it, message: item.message}));
     }

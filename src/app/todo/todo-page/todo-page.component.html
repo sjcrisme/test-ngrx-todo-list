@@ -1,4 +1,4 @@
-<div class="container">List of to do
+<div class="container">
     <input [(ngModel)]="message" name="message"><button (click)="addTodo(message,count)"> + </button>
 
     <app-todo-list [todo]="todos$ | async"  (checked)="getCheked($event)"></app-todo-list>
@@ -6,6 +6,7 @@
     <span #count class="hide">{{lastId$ | async}}</span>
 
     <!--<button (click)="test()"> test</button>-->
+
     <div class="filters">
       <button (click)="showAll()"> all</button>
       <button (click)="Completed()">Completed</button>
