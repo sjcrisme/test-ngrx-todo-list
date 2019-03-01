@@ -1,5 +1,5 @@
 # TestTodoList
-Create “To do list” by using NGXS state management module.
+Create “To do list” by using ngrx state management module.
 The “To do list” should have the possibility to write the task list. User can have
 the possibilities listed below:
 
